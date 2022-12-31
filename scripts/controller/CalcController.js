@@ -10,6 +10,7 @@ class CalcController {
         this._currentDate;
         // temos que colocar os métodos de inicialização aqui também
         this.initialize();
+        this.initButtonsEvents();
     }
 
 
@@ -27,6 +28,25 @@ class CalcController {
             this.setDisplayDateTime();
 
         }, 1000); // milesegundos
+    }
+
+    // trabalhando com botões
+    initButtonsEvents(){
+
+        let buttons = document.querySelectorAll("#buttons > g, #parts > g") // vai selecionar todos os elementos 
+        
+        // percorrer os botões
+        buttons.forEach((btn, index)=> {
+            // adicionar um evento ao clicar
+        btn.addEventListener('click', e=>{
+            /*
+            btn - botão e toda a classe
+            className.baseVal - vai pegar o nome da classe
+            replace("btn-", "") - para tirar btn- e deixar só o número ou nome
+            */
+            console.log(btn.className.baseVal.replace("btn-", ""))
+        })
+        })
     }
 
     // método para pegar a data e hora atual
