@@ -29,6 +29,16 @@ class CalcController {
 
         }, 1000); // milesegundos
     }
+    // método para separar os eventos
+                        // btn, 'click drag', e
+    addEventListenerAll(element, events, fn){
+
+        // separar o evento 'click drag' em um array
+        events.split(' ').forEach(event => {
+
+            element.addEventListener(event, fn, false);
+        })
+    }
 
     // trabalhando com botões
     initButtonsEvents(){
@@ -37,14 +47,20 @@ class CalcController {
         
         // percorrer os botões
         buttons.forEach((btn, index)=> {
-            // adicionar um evento ao clicar
-        btn.addEventListener('click', e=>{
+            // adicionar um evento ao clicar/ arrastar
+        this.addEventListenerAll(btn, 'click drag', e=>{
             /*
             btn - botão e toda a classe
             className.baseVal - vai pegar o nome da classe
             replace("btn-", "") - para tirar btn- e deixar só o número ou nome
             */
             console.log(btn.className.baseVal.replace("btn-", ""))
+        });
+
+        // evento para que quando tiver encima do botão ele virar mãozinha
+        this.addEventListenerAll(btn, "mouseover mouseup mousedown", e => {
+
+            btn.style.cursor = "pointer";
         })
         })
     }
