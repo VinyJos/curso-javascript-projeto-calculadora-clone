@@ -17,13 +17,27 @@ class CalcController {
     // método que vai iniciar quando entrar na página calculadora 
     initialize(){
         
+        // temos que já inicializar com a data e hora, para que apareça assim que entramos na aplicação
+        this.setDisplayDateTime();
+
+
         // intervalo para recarregar, para que a hora funcione corretamente.
         setInterval(() => {
 
-            this.displayDate = this.currentDate.toLocaleDateString(this._locale);
-            this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
+            this.setDisplayDateTime();
 
         }, 1000); // milesegundos
+    }
+
+    // método para pegar a data e hora atual
+    setDisplayDateTime(){
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale, {
+            // personalizar data
+            day: "2-digit",
+            month: "long",
+            year:"numeric"
+        });
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
     }
 
     get displayTime(){
